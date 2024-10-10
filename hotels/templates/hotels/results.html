@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Search Results</title>
+</head>
+<body>
+    <h1>Nearby Hotels</h1>
+
+    {% if error %}
+        <p style="color: red;">Error: {{ error }}</p>
+    {% elif hotels %}
+        <ul>
+        {% for hotel in hotels %}
+            <li>
+                <strong>{{ hotel.name }}</strong><br>
+                Address: {{ hotel.address }}<br>
+                Latitude: {{ hotel.latitude }}, Longitude: {{ hotel.longitude }}<br>
+                Rating (Stars): {{ hotel.rating }}<br>
+                Cuisine Type: {{ hotel.cuisine }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hotels found for the given coordinates.</p>
+    {% endif %}
+
+    <a href="{% url 'hotel_search_form' %}">Search Again</a>
+</body>
+</html>
